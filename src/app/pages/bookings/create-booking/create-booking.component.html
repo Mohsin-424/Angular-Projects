@@ -1,0 +1,253 @@
+<nb-card>
+    <nb-card-body>
+      <nb-stepper orientation="horizontal">
+        <nb-step [label]="details">
+          <ng-template #details>Booking Details</ng-template>
+          <form #form="ngForm" aria-labelledby="title">
+            <div class="row">
+                <div class="col-xxxl-3 col-xxl-4 col-lg-5 col-md-6">
+                    <div class="form-control-group">
+                        <label class="label" for="input-cnic">CNIC# : XXXXXXXXXXXXX</label>
+                        <input 
+                            type="number" 
+                            nbInput
+                            [(ngModel)]="booking.cnic"
+                            #cnic="ngModel"
+                            id="input-cnic"
+                            name="cnic"
+                            autofocus
+                            pattern="[0-9]{13}"
+                            placeholder="Enter 13 Digit CNIC Number"
+                            [status]="cnic.dirty ? (cnic.invalid  ? 'danger' : 'success') : 'basic'"
+                            [attr.aria-invalid]="cnic.invalid && cnic.touched ? true : null"
+                            required
+                            fullWidth>
+                        <ng-container *ngIf="cnic.invalid && cnic.touched">
+                            <p class="caption status-danger" *ngIf="cnic.errors?.required">
+                                CNIC is required!
+                            </p>
+                        </ng-container>
+                    </div>
+        
+                    <div class="form-control-group">
+                        <label class="label" for="input-phone">Phone Number :</label>
+                        <input 
+                            type="text" 
+                            nbInput
+                            [(ngModel)]="booking.phoneNo"
+                            #phoneNo="ngModel"
+                            id="input-phoneNo"
+                            name="phoneNo"
+                            autofocus
+                            [status]="phoneNo.dirty ? (phoneNo.invalid  ? 'danger' : 'success') : 'basic'"
+                            [attr.aria-invalid]="phoneNo.invalid && phoneNo.touched ? true : null"
+                            required
+                            placeholder="Enter Phone number" 
+                            fullWidth>
+                        <ng-container *ngIf="phoneNo.invalid && phoneNo.touched">
+                            <p class="caption status-danger" *ngIf="phoneNo.errors?.required">
+                                Phone Number is required!
+                            </p>
+                        </ng-container>
+                    </div>
+        
+                    <div class="form-control-group">
+                        <label class="label" for="input-vanType">Van Type</label>
+                        <nb-select placeholder="Select Van Type" fullWidth>
+                            <nb-option value="1">Option 1</nb-option>
+                            <nb-option value="2">Option 2</nb-option>
+                            <nb-option value="3">Option 3</nb-option>
+                            <nb-option value="4">Option 4</nb-option>
+                        </nb-select>
+                    </div>
+
+                    <div class="form-control-group">
+                        <label class="label" for="input-passangers">Number of Passangers</label>
+                        <input 
+                            type="text" 
+                            nbInput
+                            [(ngModel)]="booking.passangers"
+                            #passangers="ngModel"
+                            id="input-passangers"
+                            name="passangers"
+                            autofocus
+                            [status]="passangers.dirty ? (passangers.invalid  ? 'danger' : 'success') : 'basic'"
+                            [attr.aria-invalid]="passangers.invalid && passangers.touched ? true : null"
+                            required
+                            placeholder="Enter number of passangers" 
+                            fullWidth>
+                        <ng-container *ngIf="passangers.invalid && passangers.touched">
+                            <p class="caption status-danger" *ngIf="passangers.errors?.required">
+                                Passangers Count is required!
+                            </p>
+                        </ng-container>
+                    </div>
+
+                </div>
+                <div class="col-xxxl-3 col-xxl-4 col-lg-5 col-md-6">
+                    <div class="form-control-group">
+                        <label class="label" for="input-departure">Departure Address</label>
+                        <input 
+                            type="text" 
+                            nbInput
+                            [(ngModel)]="booking.departureAddress"
+                            #departureAddress="ngModel"
+                            id="input-departureAddress"
+                            name="departureAddress"
+                            autofocus
+                            [status]="departureAddress.dirty ? (departureAddress.invalid  ? 'danger' : 'success') : 'basic'"
+                            [attr.aria-invalid]="departureAddress.invalid && departureAddress.touched ? true : null"
+                            required
+                            placeholder="Enter Departure Address" 
+                            fullWidth>
+                        <ng-container *ngIf="departureAddress.invalid && departureAddress.touched">
+                            <p class="caption status-danger" *ngIf="departureAddress.errors?.required">
+                                Departure Address is required!
+                            </p>
+                        </ng-container>
+                    </div>
+        
+                    <div class="form-control-group">
+                        <label class="label" for="input-destinantion">Destination Address</label>
+                        <input 
+                            type="text" 
+                            nbInput
+                            [(ngModel)]="booking.destinationAddress"
+                            #destinationAddress="ngModel"
+                            id="input-destinationAddress"
+                            name="destinationAddress"
+                            autofocus
+                            [status]="destinationAddress.dirty ? (destinationAddress.invalid  ? 'danger' : 'success') : 'basic'"
+                            [attr.aria-invalid]="destinationAddress.invalid && destinationAddress.touched ? true : null"
+                            required
+                            placeholder="Enter Destiantion Address" 
+                            fullWidth>
+                        <ng-container *ngIf="destinationAddress.invalid && destinationAddress.touched">
+                            <p class="caption status-danger" *ngIf="destinationAddress.errors?.required">
+                                Destination Address is required!
+                            </p>
+                        </ng-container>
+                    </div>
+
+                    <div class="form-control-group">
+                        <label class="label" for="input-startDateTime">Start DateTime</label>
+                        <input 
+                            nbInput
+                            [(ngModel)]="booking.startDateTime"
+                            #startDateTime="ngModel"
+                            id="input-startDateTime"
+                            name="startDateTime"
+                            [nbDatepicker]="dateTimePicker"
+                            autofocus
+                            [status]="startDateTime.dirty ? (startDateTime.invalid  ? 'danger' : 'success') : 'basic'"
+                            [attr.aria-invalid]="startDateTime.invalid && startDateTime.touched ? true : null"
+                            required
+                            placeholder="Enter Departure Address"
+                            fullWidth>
+                            <nb-date-timepicker #dateTimePicker singleColumn [step]="10"></nb-date-timepicker>
+                        <ng-container *ngIf="startDateTime.invalid && startDateTime.touched">
+                            <p class="caption status-danger" *ngIf="startDateTime.errors?.required">
+                                Start DateTime is required!
+                            </p>
+                        </ng-container>
+                    </div>
+
+                    <div class="form-control-group">
+                        <label class="label" for="input-endDateTime">End DateTime</label>
+                        <input 
+                            type="text" 
+                            nbInput
+                            [(ngModel)]="booking.endDateTime"
+                            #endDateTime="ngModel"
+                            id="input-endDateTime"
+                            name="endDateTime"
+                            [nbDatepicker]="endDateTimePicer"
+                            autofocus
+                            [status]="endDateTime.dirty ? (endDateTime.invalid  ? 'danger' : 'success') : 'basic'"
+                            [attr.aria-invalid]="endDateTime.invalid && endDateTime.touched ? true : null"
+                            required
+                            placeholder="Enter Departure Address" 
+                            fullWidth>
+                            <nb-date-timepicker #endDateTimePicer singleColumn [step]="10"></nb-date-timepicker>
+                        <ng-container *ngIf="endDateTime.invalid && endDateTime.touched">
+                            <p class="caption status-danger" *ngIf="endDateTime.errors?.required">
+                                End DateTime is required
+                            </p>
+                        </ng-container>
+                    </div>
+                    
+                </div>
+            </div>
+        </form>
+          <div style="margin-top: 10px;">
+            <button nbButton disabled nbStepperNext>prev</button>
+            <!-- <button style="margin-left: 10px" nbButton nbStepperNext (click)="submit()" [disabled]="form.invalid">next</button> -->
+            <button style="margin-left: 10px" nbButton nbStepperNext (click)="submit()">next</button>
+
+          </div>
+        </nb-step>
+        <nb-step [label]="payment">
+          <ng-template #payment>Payment</ng-template>
+          <div class="row">
+              <div class="col-xxxl-6 col-xxl-6 col-lg-6 col-md-6">
+                <div class="form-control-group">
+                    <label class="label" for="input-vanType">Payment Method</label>
+                    <nb-select [(ngModel)]="paymentMethod" name="method" placeholder="Select Payment Method" fullWidth>
+                        <nb-option value="1">JazzCash</nb-option>
+                        <nb-option value="2">EasyPaisa</nb-option>
+                        <nb-option value="3">Raast</nb-option>
+                        <nb-option value="4">Habib Bank Limited</nb-option>
+                    </nb-select>
+                </div>
+                
+                <div *ngIf="paymentMethod" style="margin-top: 10px;">
+                    <nb-alert outline="success" role="alert">
+                        <p class="alert-title"><b>Account Details</b></p>
+                        <ul class="alert-message-list">
+                          <li class="alert-message">Bank: {{'JazzCash'}}</li>
+                          <li class="alert-message">Account Title: {{'M Nouman Khan'}}</li>
+                          <li class="alert-message">Account Number: {{'0124567895640'}}</li>
+    
+                        </ul>
+                      </nb-alert>
+                </div>
+              </div>
+              <div class="col-xxxl-6 col-xxl-6 col-lg-6 col-md-6">
+                <form (ngSubmit)="onSubmit()">
+                    <div class="form-control-group">
+                        <label class="label" for="file">Upload Payment Proof</label>
+                        <div class="upload-container">
+                            <input #fileInput type="file" nbInput fullWidth (change)="onFileSelected($event)" name="file" accept="image/*">
+                            <div class="image-preview" *ngIf="imagePreviewUrl">
+                                <img [src]="imagePreviewUrl" alt="Image Preview">
+                            </div>
+                        </div>
+                        <button *ngIf="imagePreviewUrl" style="margin-top: 10px;" nbButton type="submit" status="default">Upload</button>
+
+                    </div>    
+                </form>
+              </div>
+          </div>
+          <button nbButton nbStepperPrevious>prev</button>
+          <button nbButton nbStepperNext>next</button>
+        </nb-step>
+        <nb-step [label]="confirm">
+            <ng-template #confirm>Confirmation</ng-template>
+          <h4>Step content #3</h4>
+          <p class="lorem">
+            Lorizzle ipsum dolizzle stuff fizzle, consectetuer adipiscing break it down.
+            Nullizzle sapien velizzle, my shizz pimpin', shizzle my nizzle crocodizzle shut the shizzle up,
+            gravida vizzle, dang.
+          </p>
+          <button nbButton nbStepperPrevious>prev</button>
+          <button nbButton nbStepperNext>next</button>
+        </nb-step>
+      </nb-stepper>
+    </nb-card-body>
+</nb-card>
+
+  
+  
+  
+  
+  

@@ -1,0 +1,91 @@
+<nb-card>
+    <nb-card-body>
+        <div>
+            <span style="float: right"><a (click)="close()" style="cursor: pointer"><nb-icon icon="close"></nb-icon></a></span>
+            <h5>Select Booking Dates</h5>
+        </div>
+        
+        <form #bookingForm="ngForm">
+            <div class="row">
+                <div class="col-xxxl-6 col-xxl-6 col-lg-6 col-md-6">
+                    <div class="form-control-group">
+                        <label class="label" for="input-startDate">Start Date</label>
+                        <input 
+                            nbInput
+                            [(ngModel)]="booking.startDate"
+                            (ngModelChange)="onDateSelect()"
+                            #startDate="ngModel"
+                            id="input-startDate"
+                            name="startDate"
+                            [nbDatepicker]="datePicker"
+                            [status]="startDate.dirty ? (startDate.invalid  ? 'danger' : 'success') : 'basic'"
+                            [attr.aria-invalid]="startDate.invalid && startDate.touched ? true : null"
+                            required
+                            placeholder="YYYY-MM-DD hh:mm"
+                            fullWidth>
+                            <nb-datepicker #datePicker ></nb-datepicker>
+                        <ng-container *ngIf="startDate.invalid && startDate.touched">
+                            <p class="caption status-danger" *ngIf="startDate.errors?.required">
+                                Start Date is required!
+                            </p>
+                        </ng-container>
+                    </div>
+                </div>
+                <div class="col-xxxl-6 col-xxl-6 col-lg-6 col-md-6">
+                    <div class="form-control-group">
+                        <label class="label" for="input-endDate">End Date</label>
+                        <input 
+                            type="text" 
+                            nbInput
+                            [(ngModel)]="booking.endDate"
+                            (ngModelChange)="onDateSelect()"
+                            #endDate="ngModel"
+                            id="input-endDate"
+                            name="endDate"
+                            [nbDatepicker]="endDatePicker"
+                            [status]="endDate.dirty ? (endDate.invalid  ? 'danger' : 'success') : 'basic'"
+                            [attr.aria-invalid]="endDate.invalid && endDate.touched ? true : null"
+                            required
+                            placeholder="YYYY-MM-DD hh:mm" 
+                            fullWidth>
+                            <nb-datepicker #endDatePicker singleColumn></nb-datepicker>
+                        <ng-container *ngIf="endDate.invalid && endDate.touched">
+                            <p class="caption status-danger" *ngIf="endDate.errors?.required">
+                                End Date is required
+                            </p>
+                        </ng-container>
+                    </div>
+                </div>
+        
+            </div>
+            <div class="row" *ngIf="datesSelected && vansAvailable.length">
+                <div class="col-xxxl-6 col-xxl-6 col-lg-6 col-md-6">
+                    <div class="form-control-group">
+                        <label class="label" for="input-vanType">Van Type</label>
+                        <nb-select [(ngModel)]="booking.vanId" name="vanId" placeholder="Select Van Type" fullWidth>
+                            <nb-option *ngFor="let van of vansAvailable" [value]="van">van {{van}}</nb-option>
+                        </nb-select>
+                    </div>
+                </div>
+                <div class="col-xxxl-6 col-xxl-6 col-lg-6 col-md-6">
+                    <br>
+                    <div style="float: right; padding-top: 10px;">
+                        <button nbButton status="primary" routerLink="/create-booking" (click)="submit()"> <nb-icon icon="plus"></nb-icon>Booking</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="mt-3" *ngIf="showAlert && !vansAvailable.length">
+            <nb-alert outline="danger" role="alert">
+                <p class="alert-title"><b>No Vehicle available for the Selected DateRange!!!</b></p>
+            </nb-alert>
+        </div>
+        <div class="mt-3" *ngIf="showAlert && bookingAvailable">
+            <nb-alert outline="success" role="alert">
+                <p class="alert-title"><b>Booking Available! Choose Van Type and proceed to Booking Details.</b></p>
+            </nb-alert>
+        </div>
+        <br>
+        <br>
+    </nb-card-body>
+</nb-card>

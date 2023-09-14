@@ -1,0 +1,34 @@
+<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item" [class.active]="currentSlide === 0">
+        <img src="../../../../assets/images/van1.jpg" class="d-block w-100" alt="Van 1">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>{{slides[0].title}}</h5>
+          <button class="btn btn-primary btn-lg">Book Van</button>
+        </div>
+      </div>
+      <div class="carousel-item" [class.active]="currentSlide === 1">
+        <img src="../../../../assets/images/van2.jpeg" class="d-block w-100" alt="Van 2">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>{{slides[1].title}}</h5>
+          <button class="btn btn-primary btn-lg">Book Van</button>
+        </div>
+      </div>
+      <div class="carousel-item" [class.active]="currentSlide === 2">
+        <img src="../../../../assets/images/van4.jpg" class="d-block w-100" alt="Van 3">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>{{slides[2].title}}</h5>
+          <button class="btn btn-primary btn-lg">Book Van</button>
+        </div>
+      </div>
+    </div>
+    <a class="carousel-control-prev" role="button" (click)="prevSlide()">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </a>
+    <a class="carousel-control-next" role="button" (click)="nextSlide()">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </a>
+  </div>
+  

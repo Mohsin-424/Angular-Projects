@@ -1,0 +1,14 @@
+<nb-card>
+    <nb-card-header>
+      <span style="font-size: 24px;">Bookings</span> <span style="float:right"><button nbButton status="primary" routerLink="/create-booking"> <nb-icon icon="plus"></nb-icon>Booking</button></span>
+    </nb-card-header>
+  
+    <nb-card-body>
+      <div style="float:right; margin-bottom: 5px;">
+        <input nbInput placeholder="Filter Bookings" [nbDatepicker]="formpicker">
+        <nb-rangepicker #formpicker></nb-rangepicker>
+      </div>
+      <ng2-smart-table [settings]="settings" [source]="source" (rowSelect)="onRowSelect($event)">
+      </ng2-smart-table>
+    </nb-card-body>
+</nb-card>

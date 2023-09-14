@@ -1,0 +1,56 @@
+.spinner-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3); /* Adjust opacity as needed */
+    z-index: 9999; /* Make sure it's on top of other elements */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 1s ease-in-out; /* Add transition effect */
+    
+    &.active {
+      opacity: 1; /* Show overlay when active */
+    }
+    
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.3); /* Adjust opacity as needed */
+      z-index: -1; /* Move it behind the spinner overlay */
+      opacity: 0;
+      transition: opacity 1s ease-in-out; /* Add transition effect */
+      
+    }
+    
+    .spinner-container {
+      width: 100px; /* Adjust size as needed */
+      height: 100px; /* Adjust size as needed */
+      animation: spinner-flip 1.5s infinite linear;
+    }
+  
+    @keyframes spinner-flip {
+      0% {
+        transform: rotateY(0deg);
+      }
+      50% {
+        transform: rotateY(180deg);
+      }
+      100% {
+        transform: rotateY(0deg);
+      }
+    }
+  
+    .logo {
+      width: 100%; /* Adjust size as needed */
+      height: 100%; /* Adjust size as needed */
+    }
+  }
+  

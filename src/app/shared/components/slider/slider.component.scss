@@ -1,0 +1,11 @@
+.carousel-item {
+    height: calc(100vh - 150px); /* adjust the height to avoid overlapping with header and footer */
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .carousel-caption {
+    bottom: 50%;
+    transform: translateY(50%);
+  }
+  
