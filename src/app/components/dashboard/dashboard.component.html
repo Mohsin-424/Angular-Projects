@@ -1,0 +1,22 @@
+<section class="chart-container">
+  <app-bar-chart></app-bar-chart>
+
+  <span class="spacer"></span>
+
+  <!-- <app-pie-chart></app-pie-chart> -->
+  <p>pie-chart works!</p>
+</section>
+
+<mat-divider></mat-divider>
+
+<section>
+  <mat-spinner *ngIf="loading"></mat-spinner>
+
+  <app-table
+    *ngIf="employeeData"
+    [tableData]="employeeData"
+    [tableColumns]="employeeColumns"
+    [tableTitle]="employeeTableTitle"
+    [tableActions]="true"
+  ></app-table>
+</section>

@@ -1,0 +1,31 @@
+<mat-nav-list>
+  <mat-icon></mat-icon>
+  <div class="profile-card">
+    <div class="header">
+      <h2>Muhammad Mohsin</h2>
+      <!-- <h3>CEO</h3> -->
+    </div>
+    <img src="../../../../assets/img/selfie.png" alt="Muhammad Mohsin" />
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <h2 class="sub-header">Pages</h2>
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/">
+    <mat-icon color="primary">dashboard</mat-icon>Dashboard
+  </a>
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/Alerts">
+    <mat-icon color="primary">notifications</mat-icon>Alerts
+  </a>
+
+  <mat-divider></mat-divider>
+
+  <h2 class="sub-header">Tools</h2>
+  <a
+    mat-list-item
+    routerLinkActive="list-item-active"
+    routerLink="/Maintenance"
+  >
+    <mat-icon color="primary">import_contacts</mat-icon>Maintenance Contacts
+  </a>
+</mat-nav-list>
